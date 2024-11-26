@@ -1,9 +1,11 @@
 # Imagen base de OpenJDK
 FROM openjdk:21-jdk-slim
 
-# Crear directorio de trabajo y copiar el JAR
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+# Crear directorio de trabajo
+WORKDIR /app
+
+# Copiar el JAR generado por Maven
+COPY target/*.jar app.jar
 
 # Exponer el puerto donde Spring Boot ejecutará la API
 EXPOSE 8080
